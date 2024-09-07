@@ -16,4 +16,11 @@ class ProjectGroup extends Model
      */
     protected $fillable = ['title', 'description'];
 
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class)
+            ->using(ProjectProjectGroup::class)
+            ->withTimestamps();
+    }
+
 }

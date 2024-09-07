@@ -15,4 +15,11 @@ class Project extends Model
      * @var array
      */
     protected $fillable = ['title', 'description'];
+
+    public function projectGroups()
+    {
+        return $this->belongsToMany(ProjectGroup::class)
+            ->using(ProjectProjectGroup::class)
+            ->withTimestamps();
+    }
 }

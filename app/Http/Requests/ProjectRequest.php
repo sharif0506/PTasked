@@ -24,6 +24,15 @@ class ProjectRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
+            'project_group_ids' => 'required|array',
+            'project_group_ids.*' => 'exists:project_groups,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'project_group_ids.*.exists' => 'One or more of the selected project groups do not exist.',
         ];
     }
 }
